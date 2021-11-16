@@ -1,0 +1,16 @@
+from rest_framework import serializers
+from to_do.models import Folder, Task
+
+
+class TaskSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Task
+        fields = "__all__"
+
+
+class FolderSerializer(serializers.ModelSerializer):
+    tasks = TaskSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Folder
+        fields = "__all__"
