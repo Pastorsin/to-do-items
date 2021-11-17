@@ -19,4 +19,29 @@ api.removeFolder = async (folder) => {
     return response.data
 }
 
+api.getFolderById = async (folderId) => {
+    const response = await api.get(`folders/${folderId}/`)
+    return response.data
+}
+
+api.createTask = async (task) => {
+    const response = await api.post('tasks/', task)
+    return response.data
+}
+
+api.removeTask = async (task) => {
+    const response = await api.delete(`tasks/${task.id}/`)
+    return response.data
+}
+
+api.patchTask = async (task) => {
+    const response = await api.patch(`tasks/${task.id}/`, task)
+    return response.data
+}
+
+api.getTaskById = async (taskId) => {
+    const response = await api.get(`tasks/${taskId}/`)
+    return response.data
+}
+
 export default api;

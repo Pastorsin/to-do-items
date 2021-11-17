@@ -18,8 +18,9 @@
       </div>
     </div>
     <div class="folder__buttons">
-      <button @click="showTasks" v-if="!tasksOpened">View items</button>
-      <button @click="hideTasks" v-if="tasksOpened">Hide items</button>
+      <router-link :to="{ path: `folder/${folder.id}` }">
+        <button>View items</button>
+      </router-link>
       <button @click="removeFolder(folder)">Remove</button>
     </div>
   </div>
@@ -38,17 +39,6 @@ export default {
   },
   methods: {
     ...mapActions(["removeFolder"]),
-    showTasks() {
-      this.tasksOpened = true;
-    },
-    hideTasks() {
-      this.tasksOpened = false;
-    },
-  },
-  data() {
-    return {
-      tasksOpened: false,
-    };
   },
 };
 </script>
