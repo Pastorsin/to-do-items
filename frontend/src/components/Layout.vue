@@ -62,15 +62,18 @@ export default {
 }
 
 .section__title {
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(2rem, 3vw, 2.5rem);
   font-family: monospace;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
 }
 
 .section__subtitle {
   margin: 2rem 0 3rem 0;
   font-family: "Lato", sans-serif;
   color: #444;
-  font-size: clamp(0.5rem, 1.5vw, 1.5rem);
+  font-size: clamp(1rem, 1.5vw, 1.5rem);
 }
 
 .section__content {

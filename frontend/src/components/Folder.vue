@@ -14,7 +14,7 @@
         </svg>
       </div>
       <div class="folder__label_text">
-        <span>{{ folder.name }}</span>
+        {{ folder.name }}
       </div>
     </div>
     <div class="folder__buttons">
@@ -50,12 +50,25 @@ export default {
   justify-content: space-between;
   padding: 0.5rem;
   border-bottom: 1px solid #ccc;
+  flex-wrap: wrap;
 }
 
 .folder__label {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  flex: 2;
+}
+
+.folder__label_text {
+  display: inline-block;
+  font-size: clamp(0.8rem, 1vw, 1rem);
+  flex: 1;
+  width: 100px;
+  overflow: hidden;
+  display: inline-block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .folder__label_icon {
@@ -65,6 +78,7 @@ export default {
 .folder__buttons {
   display: flex;
   align-items: center;
+  justify-content: space-around;
   gap: 1em;
 }
 </style>

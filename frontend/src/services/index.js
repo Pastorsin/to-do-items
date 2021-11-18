@@ -44,4 +44,19 @@ api.getTaskById = async (taskId) => {
     return response.data
 }
 
+api.getToken = async (credentials) => {
+    const response = await api.post('token/', credentials)
+    return response.data
+}
+
+api.interceptors.request.use(config => {
+    const token = localStorage.getItem('token');
+
+    if (token) {
+        config.headers.Authorization = `Token ${token}`
+    }
+
+    return config
+}, (error) => error)
+
 export default api;

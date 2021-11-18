@@ -5,7 +5,7 @@ const store = {
         folders: [],
         folder: {},
         task: {},
-        isLoading: true,
+        isLoading: false,
         error: "",
     },
     mutations: {

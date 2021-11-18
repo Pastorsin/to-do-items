@@ -94,8 +94,8 @@ export default {
 <style scoped>
 .back_button {
   display: flex;
-  align-self: center;
-  margin: 2rem;
+  align-self: flex-end;
+  margin: 1rem;
 }
 
 .tasks {
