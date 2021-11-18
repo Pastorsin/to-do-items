@@ -10,7 +10,8 @@ class TaskSerializer(serializers.ModelSerializer):
 
 class FolderSerializer(serializers.ModelSerializer):
     tasks = TaskSerializer(many=True, read_only=True, source="task_set")
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
 
     class Meta:
         model = Folder
-        fields = ["id", "name", "tasks"]
+        fields = ["id", "name", "tasks", "user"]

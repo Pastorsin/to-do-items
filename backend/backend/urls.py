@@ -8,5 +8,5 @@ urlpatterns = [
     path("docs/", include("doc.urls")),
     path("admin/", admin.site.urls),
     path("api/", include("to_do.urls")),
-    path("auth/", views.obtain_auth_token),
+    path("api/token/", views.obtain_auth_token),
 ]

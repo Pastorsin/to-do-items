@@ -20,6 +20,7 @@ class Task(ModelBase):
 
 class Folder(ModelBase):
     name = models.CharField(max_length=200, unique=True)
+    user = models.ForeignKey("auth.User", on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
