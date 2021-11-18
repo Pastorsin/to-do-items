@@ -1,0 +1,95 @@
+[
+    {
+        "model": "to_do.task",
+        "pk": 20,
+        "fields": {
+            "created_at": "2021-11-18T15:44:44.520Z",
+            "updated_at": "2021-11-18T15:44:58.241Z",
+            "title": "Prepare weekly report",
+            "completed": true,
+            "folder": 11
+        }
+    },
+    {
+        "model": "to_do.task",
+        "pk": 21,
+        "fields": {
+            "created_at": "2021-11-18T15:44:48.684Z",
+            "updated_at": "2021-11-18T15:44:59.050Z",
+            "title": "Write to candidates",
+            "completed": true,
+            "folder": 11
+        }
+    },
+    {
+        "model": "to_do.task",
+        "pk": 22,
+        "fields": {
+            "created_at": "2021-11-18T15:45:17.299Z",
+            "updated_at": "2021-11-18T15:45:38.272Z",
+            "title": "Buy groceries",
+            "completed": true,
+            "folder": 12
+        }
+    },
+    {
+        "model": "to_do.task",
+        "pk": 23,
+        "fields": {
+            "created_at": "2021-11-18T15:45:25.206Z",
+            "updated_at": "2021-11-18T15:45:25.206Z",
+            "title": "Prepare weekly report",
+            "completed": false,
+            "folder": 12
+        }
+    },
+    {
+        "model": "to_do.task",
+        "pk": 24,
+        "fields": {
+            "created_at": "2021-11-18T15:45:31.624Z",
+            "updated_at": "2021-11-18T15:45:39.149Z",
+            "title": "Write to candidates",
+            "completed": true,
+            "folder": 12
+        }
+    },
+    {
+        "model": "to_do.folder",
+        "pk": 11,
+        "fields": {
+            "created_at": "2021-11-18T15:41:32.654Z",
+            "updated_at": "2021-11-18T15:41:32.654Z",
+            "name": "Work",
+            "user": 1
+        }
+    },
+    {
+        "model": "to_do.folder",
+        "pk": 12,
+        "fields": {
+            "created_at": "2021-11-18T15:41:39.039Z",
+            "updated_at": "2021-11-18T15:41:39.039Z",
+            "name": "Daily Tasks",
+            "user": 1
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$ZbQzIjRo7ZuSw1wY7wIw0l$46ZI13GJ6AFYDswufBCcHqa+HDQtgRlRpSsFqa8Og+4=",
+            "last_login": "2021-11-18T03:37:42.118Z",
+            "is_superuser": true,
+            "username": "admin",
+            "first_name": "",
+            "last_name": "",
+            "email": "",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2021-11-18T03:37:34.642Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    }
+]

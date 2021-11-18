@@ -18,9 +18,9 @@ BASE_DIR = Path(__file__).resolve().parent
 # Production
 # https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
-SECRET_KEY = env.str("SECRET_KEY")
+SECRET_KEY = env.str("SECRET_KEY", default="secret-key")
 
-DEBUG = env.bool("DEBUG")
+DEBUG = env.bool("DEBUG", default=True)
 
 ALLOWED_HOSTS = []
 
