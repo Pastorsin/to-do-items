@@ -3,13 +3,15 @@
     <template #title> Edit Task </template>
     <template #subtitle> Change the name of the task </template>
 
-    <form @submit.prevent="save(task)" class="task__edit_form">
-      <input type="text" v-model="task.title" required />
-      <div class="task__edit_form_buttons">
-        <button type="submit">Save</button>
-        <button type="button" @click="cancel(task)">Cancel</button>
-      </div>
-    </form>
+    <template #content>
+      <form @submit.prevent="save(task)" class="task__edit_form">
+        <input type="text" v-model="task.title" required />
+        <div class="task__edit_form_buttons">
+          <button type="submit">Save</button>
+          <button type="button" @click="cancel(task)">Cancel</button>
+        </div>
+      </form>
+    </template>
   </Layout>
 </template>
 
@@ -45,7 +47,8 @@ export default {
     },
   },
   mounted() {
-    this.$store.dispatch("getTaskById", this.$route.params.id);
+    const { id } = this.$route.params;
+    this.$store.dispatch("getTaskById", id);
   },
 };
 </script>
@@ -53,10 +56,10 @@ export default {
 <style scoped>
 .task__edit_form {
   display: flex;
-  width: 30%;
   gap: 1rem;
   flex-direction: column;
-  justify-items: center;
+  flex: 4;
+  padding: 2em;
 }
 
 .task__edit_form_buttons {

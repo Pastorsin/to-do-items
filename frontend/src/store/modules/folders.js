@@ -5,6 +5,8 @@ const store = {
         folders: [],
         folder: {},
         task: {},
+        isLoading: true,
+        error: "",
     },
     mutations: {
         setFolders(state, folders) {
@@ -32,17 +34,33 @@ const store = {
         },
         setTask(state, task) {
             state.task = task;
-        }
+        },
+        setLoading(state, isLoading) {
+            state.isLoading = isLoading;
+        },
+        setError(state, error) {
+            state.error = error;
+        },
     },
     actions: {
         async getFolders({ commit }) {
-            const folders = await api.getFolders();
-            commit('setFolders', folders);
+            try {
+                commit('setLoading', true);
+                const folders = await api.getFolders();
+                commit('setFolders', folders);
+            } finally {
+                commit('setLoading', false);
+            }
         },
 
         async getFolderById({ commit }, id) {
-            const folder = await api.getFolderById(id);
-            commit('setFolder', folder);
+            try {
+                commit('setLoading', true);
+                const folder = await api.getFolderById(id);
+                commit('setFolder', folder);
+            } finally {
+                commit('setLoading', false);
+            }
         },
 
         async createFolder({ commit }, folder) {
@@ -58,31 +76,18 @@ const store = {
                         type: 'error',
                         message: 'Folder name already exists, please choose other name.',
                     });
-                } else {
-                    commit('addAlert', {
-                        type: 'error',
-                        message: 'An error ocurred.',
-                    });
                 }
-
             }
         },
 
         async removeFolder({ commit }, folder) {
-            try {
-                await api.removeFolder(folder);
+            await api.removeFolder(folder);
+            commit('removeFolder', folder);
 
-                commit('removeFolder', folder);
-                commit('addAlert', {
-                    type: 'success',
-                    message: 'Folder deleted successfully.'
-                });
-            } catch (error) {
-                commit('addAlert', {
-                    type: 'error',
-                    message: 'An error ocurred.',
-                });
-            }
+            commit('addAlert', {
+                type: 'success',
+                message: 'Folder deleted successfully.'
+            });
         },
 
         async createTask({ commit }, { title, folder }) {
@@ -91,37 +96,23 @@ const store = {
         },
 
         async removeTask({ commit }, task) {
-            try {
-                await api.removeTask(task);
-                commit('removeTaskFromFolder', task);
-                commit('addAlert', {
-                    type: 'success',
-                    message: 'Task deleted successfully.'
-                });
-            } catch (error) {
-                commit('addAlert', {
-                    type: 'error',
-                    message: 'An error ocurred.',
-                });
-            }
+            await api.removeTask(task);
+            commit('removeTaskFromFolder', task);
+
+            commit('addAlert', {
+                type: 'success',
+                message: 'Task deleted successfully.'
+            });
         },
 
         async updateTask({ commit }, task) {
-            try {
-                const updatedTask = await api.patchTask(task);
-                commit('updateTask', updatedTask);
+            const updatedTask = await api.patchTask(task);
+            commit('updateTask', updatedTask);
 
-                commit('addAlert', {
-                    type: 'success',
-                    message: 'Task updated successfully.'
-                });
-            } catch (error) {
-                console.log(error);
-                commit('addAlert', {
-                    type: 'error',
-                    message: 'An error ocurred.',
-                });
-            }
+            commit('addAlert', {
+                type: 'success',
+                message: 'Task updated successfully.'
+            });
         },
 
         async getTaskById({ commit }, id) {

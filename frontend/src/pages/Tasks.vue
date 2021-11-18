@@ -3,28 +3,34 @@
     <template #title>Folder > {{ folder.name }}</template>
     <template #subtitle>Manage your tasks.</template>
 
-    <button class="back_button" @click="backToFoldersList">Back</button>
+    <template #content>
+      <button class="back_button" @click="backToFoldersList">Back</button>
 
-    <h3>Tasks completed: {{ numberOfTasksCompleted }}</h3>
+      <ul class="tasks__list" v-if="hasTasks">
+        <header class="tasks__header">
+          <h3>Tasks completed: {{ numberOfTasksCompleted }}</h3>
+        </header>
 
-    <ul class="tasks">
-      <li v-for="task in folder.tasks" :key="task.id" class="task__item">
-        <div class="task__item_label">
-          <input
-            @change="updateTask(task)"
-            type="checkbox"
-            v-model="task.completed"
-          />
-          {{ task.title }}
-        </div>
-        <div class="task__item_buttons">
-          <button @click="editTask(task)">Edit</button>
-          <button @click="removeTask(task)">Remove</button>
-        </div>
-      </li>
-    </ul>
+        <li v-for="task in folder.tasks" :key="task.id" class="task__item">
+          <div class="task__item_label">
+            <input
+              @change="updateTask(task)"
+              type="checkbox"
+              v-model="task.completed"
+            />
+            {{ task.title }}
+          </div>
+          <div class="task__item_buttons">
+            <button @click="editTask(task)">Edit</button>
+            <button @click="removeTask(task)">Remove</button>
+          </div>
+        </li>
+      </ul>
 
-    <TaskCreate :folder="folder" />
+      <EmptyResults entityLabel="tasks" v-else />
+
+      <TaskCreate :folder="folder" />
+    </template>
   </Layout>
 </template>
 
@@ -32,12 +38,14 @@
 import TaskCreate from "@/components/TaskCreate.vue";
 import Layout from "@/components/Layout.vue";
 import { mapState } from "vuex";
+import EmptyResults from "@/components/EmptyResults.vue";
 
 export default {
   name: "Tasks",
   components: {
     Layout,
     TaskCreate,
+    EmptyResults,
   },
   data() {
     return {
@@ -49,9 +57,10 @@ export default {
       folder: (state) => state.folderStore.folder,
     }),
     numberOfTasksCompleted() {
-      if (!this.folder || !this.folder.tasks) return 0;
-
       return this.folder.tasks.filter((task) => task.completed).length;
+    },
+    hasTasks() {
+      return this.folder && this.folder.tasks && this.folder.tasks.length;
     },
   },
   methods: {
@@ -76,7 +85,7 @@ export default {
     },
   },
   mounted() {
-    const id = this.$route.params.id;
+    const { id } = this.$route.params;
     this.$store.dispatch("getFolderById", id);
   },
 };
@@ -88,11 +97,26 @@ export default {
   align-self: center;
   margin: 2rem;
 }
+
 .tasks {
   display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.tasks__list {
+  display: inline-flex;
   padding-bottom: 2em;
-  width: 60%;
   gap: 1em;
+  width: 100%;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.tasks__header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
 }
 

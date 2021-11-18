@@ -3,23 +3,39 @@
     <h2 class="section__title" v-if="hasTitleSlot">
       <slot name="title"></slot>
     </h2>
+
     <h3 class="section__subtitle" v-if="hasSubtitleSlot">
       <slot name="subtitle"></slot>
     </h3>
-    <slot class="section__content"></slot>
+
+    <main class="section__content">
+      <Error :message="error" v-if="error" />
+      <Loader v-else-if="isLoading" />
+      <slot name="content" v-else></slot>
+    </main>
+
     <Alert />
   </div>
 </template>
 
 <script>
 import Alert from "@/components/Alert";
+import Error from "@/components/Error";
+import Loader from "@/components/Loader";
+import { mapState } from "vuex";
 
 export default {
   name: "Layout",
   components: {
     Alert,
+    Error,
+    Loader,
   },
   computed: {
+    ...mapState({
+      isLoading: (state) => state.folderStore.isLoading,
+      error: (state) => state.folderStore.error,
+    }),
     hasTitleSlot() {
       return !!this.$slots["title"];
     },
@@ -27,6 +43,7 @@ export default {
       return !!this.$slots["subtitle"];
     },
   },
+  created() {},
 };
 </script>
 
@@ -54,5 +71,20 @@ export default {
   font-family: "Lato", sans-serif;
   color: #444;
   font-size: clamp(0.5rem, 1.5vw, 1.5rem);
+}
+
+.section__content {
+  display: flex;
+  padding-bottom: 2em;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  flex-direction: column;
+}
+
+@media (max-width: 1024px) {
+  .section__content {
+    width: 100%;
+  }
 }
 </style>
