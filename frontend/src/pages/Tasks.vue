@@ -52,6 +52,8 @@ export default {
       folder: (state) => state.folderStore.folder,
     }),
     numberOfTasksCompleted() {
+      if (!this.folder || !this.folder.tasks) return 0;
+
       return this.folder.tasks.filter((task) => task.completed).length;
     },
     hasTasks() {
