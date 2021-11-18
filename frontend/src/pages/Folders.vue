@@ -4,7 +4,7 @@
     <template #subtitle>Manage your folders.</template>
 
     <template #content>
-      <ul class="folders" v-if="folders">
+      <ul class="folders" v-if="hasFolders">
         <li class="folders__item" v-for="folder in folders" :key="folder.id">
           <Folder :folder="folder" />
         </li>
@@ -36,6 +36,9 @@ export default {
     ...mapState({
       folders: (state) => state.folderStore.folders,
     }),
+    hasFolders() {
+      return this.folders.length > 0;
+    },
   },
   mounted() {
     this.$store.dispatch("getFolders");
