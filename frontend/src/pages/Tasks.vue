@@ -38,7 +38,7 @@
 import TaskCreate from "@/components/TaskCreate.vue";
 import Layout from "@/components/Layout.vue";
 import { mapState } from "vuex";
-import EmptyResults from "@/components/EmptyResults.vue";
+import EmptyResults from "@/components/share/EmptyResults.vue";
 
 export default {
   name: "Tasks",

@@ -19,7 +19,7 @@
 <script>
 import Folder from "@/components/Folder.vue";
 import FolderCreate from "@/components/FolderCreate.vue";
-import EmptyResults from "@/components/EmptyResults.vue";
+import EmptyResults from "@/components/share/EmptyResults.vue";
 import Layout from "@/components/Layout.vue";
 
 import { mapState } from "vuex";

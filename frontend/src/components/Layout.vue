@@ -19,9 +19,9 @@
 </template>
 
 <script>
-import Alert from "@/components/Alert";
-import Error from "@/components/Error";
-import Loader from "@/components/Loader";
+import Alert from "@/components/share/Alert";
+import Error from "@/components/share/Error";
+import Loader from "@/components/share/Loader";
 import { mapState } from "vuex";
 
 export default {
