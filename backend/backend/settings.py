@@ -144,6 +144,7 @@ CORS_ALLOWED_ORIGINS = [
     # Localhost
     "http://localhost:8080",
     # Frontend
+    "https://to-do-items-ui.netlify.app",
 ]
 
 # Heroku settings
