@@ -8,6 +8,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import sys
 from pathlib import Path
 
+import django_heroku
 import environ
 
 env = environ.Env()
@@ -140,5 +141,12 @@ STATIC_URL = "/static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 CORS_ALLOWED_ORIGINS = [
+    # Localhost
     "http://localhost:8080",
+    # Frontend
 ]
+
+# Heroku settings
+# https://pypi.org/project/django-heroku/
+
+django_heroku.settings(locals())

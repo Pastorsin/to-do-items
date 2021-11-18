@@ -4,8 +4,8 @@ from drf_yasg import openapi
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="Albums API",
-        description="API for managing natural disasters albums",
+        title="To-do items API",
+        description="API for managing to do items",
         default_version="1.0",
     ),
     public=True,
