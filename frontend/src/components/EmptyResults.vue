@@ -1,7 +1,6 @@
 <template>
   <div class="empty_results">
-    <small>You don't have any {{ entityLabel }} yet.</small>
-    <small>Create one!</small>
+    <small>You don't have any {{ entityLabel }} yet. Create one!</small>
   </div>
 </template>
 

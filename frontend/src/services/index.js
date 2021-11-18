@@ -1,5 +1,4 @@
 import axios from 'axios'
-import store from '../store'
 
 const api = axios.create({
     baseURL: 'http://localhost:8000/api/',
@@ -44,13 +43,5 @@ api.getTaskById = async (taskId) => {
     const response = await api.get(`tasks/${taskId}/`)
     return response.data
 }
-
-api.interceptors.response.use(
-    response => response,
-    () => {
-        store.commit('setError', 'An error ocurred, try again please.');
-    }
-);
-
 
 export default api;
