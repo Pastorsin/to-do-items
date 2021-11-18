@@ -4,10 +4,10 @@ from to_do.serializers import FolderSerializer, TaskSerializer
 
 
 class TaskViewSet(viewsets.ModelViewSet):
-    queryset = Task.objects.filter(is_deleted=False)
+    queryset = Task.objects.all()
     serializer_class = TaskSerializer
 
 
 class FolderViewSet(viewsets.ModelViewSet):
-    queryset = Folder.objects.filter(is_deleted=False)
+    queryset = Folder.objects.all()
     serializer_class = FolderSerializer
