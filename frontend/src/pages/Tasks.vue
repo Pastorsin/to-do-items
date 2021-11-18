@@ -1,16 +1,10 @@
 <template>
   <Layout v-if="folder">
     <template #title>Folder > {{ folder.name }}</template>
-    <template #subtitle>Manage your tasks.</template>
+    <template #subtitle>Tasks completed: {{ numberOfTasksCompleted }}</template>
 
     <template #content>
-      <button class="back_button" @click="backToFoldersList">Back</button>
-
       <ul class="tasks__list" v-if="hasTasks">
-        <header class="tasks__header">
-          <h3>Tasks completed: {{ numberOfTasksCompleted }}</h3>
-        </header>
-
         <li v-for="task in folder.tasks" :key="task.id" class="task__item">
           <div class="task__item_label">
             <input
@@ -21,12 +15,11 @@
             {{ task.title }}
           </div>
           <div class="task__item_buttons">
-            <button @click="editTask(task)">Edit</button>
-            <button @click="removeTask(task)">Remove</button>
+            <CButton @click="editTask(task)">Edit</CButton>
+            <CButton variant="red" @click="removeTask(task)">Remove</CButton>
           </div>
         </li>
       </ul>
-
       <EmptyResults entityLabel="tasks" v-else />
 
       <TaskCreate :folder="folder" />
@@ -39,6 +32,7 @@ import TaskCreate from "@/components/TaskCreate.vue";
 import Layout from "@/components/Layout.vue";
 import { mapState } from "vuex";
 import EmptyResults from "@/components/share/EmptyResults.vue";
+import CButton from "@/components/share/CButton.vue";
 
 export default {
   name: "Tasks",
@@ -46,6 +40,7 @@ export default {
     Layout,
     TaskCreate,
     EmptyResults,
+    CButton,
   },
   data() {
     return {
@@ -78,11 +73,6 @@ export default {
         },
       });
     },
-    backToFoldersList() {
-      this.$router.push({
-        name: "Folders",
-      });
-    },
   },
   mounted() {
     const { id } = this.$route.params;
@@ -92,12 +82,6 @@ export default {
 </script>
 
 <style scoped>
-.back_button {
-  display: flex;
-  align-self: flex-end;
-  margin: 1rem;
-}
-
 .tasks {
   display: flex;
   flex-direction: column;
@@ -116,8 +100,8 @@ export default {
 .tasks__header {
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  justify-content: space-around;
+  flex-direction: row;
 }
 
 .task__item {
@@ -130,12 +114,6 @@ export default {
 .task__item > * {
   display: flex;
   gap: 0.5rem;
-}
-
-.task__create_form {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
 }
 
 @media (max-width: 768px) {

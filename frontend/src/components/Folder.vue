@@ -19,18 +19,22 @@
     </div>
     <div class="folder__buttons">
       <router-link :to="{ path: `folder/${folder.id}` }">
-        <button>View items</button>
+        <CButton type="button"> View Items </CButton>
       </router-link>
-      <button @click="removeFolder(folder)">Remove</button>
+      <CButton variant="red" @click="removeFolder(folder)">Remove</CButton>
     </div>
   </div>
 </template>
 
 <script>
+import CButton from "@/components/share/CButton.vue";
 import { mapActions } from "vuex";
 
 export default {
   name: "Folder",
+  components: {
+    CButton,
+  },
   props: {
     folder: {
       type: Object,

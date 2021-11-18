@@ -5,10 +5,14 @@
 
     <template #content>
       <form @submit.prevent="save(task)" class="task__edit_form">
-        <input type="text" v-model="task.title" required />
+        <CInput>
+          <input type="text" v-model="task.title" required />
+        </CInput>
         <div class="task__edit_form_buttons">
-          <button type="submit">Save</button>
-          <button type="button" @click="cancel(task)">Cancel</button>
+          <CButton type="submit">Save</CButton>
+          <CButton type="button" variant="red" @click="cancel(task)"
+            >Cancel</CButton
+          >
         </div>
       </form>
     </template>
@@ -16,6 +20,9 @@
 </template>
 
 <script>
+import CButton from "@/components/share/CButton.vue";
+import CInput from "@/components/share/CInput.vue";
+
 import Layout from "@/components/Layout";
 import { mapState } from "vuex";
 
@@ -23,6 +30,8 @@ export default {
   name: "TaskEdit",
   components: {
     Layout,
+    CButton,
+    CInput,
   },
   computed: {
     ...mapState({

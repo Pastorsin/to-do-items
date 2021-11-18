@@ -1,7 +1,9 @@
 <template>
   <nav class="navbar">
     <ul class="navbar__list">
-      <li class="navbar__title">To-Do app</li>
+      <router-link to="/" class="navbar__link">
+        <li class="navbar__title">To-Do app</li>
+      </router-link>
       <li class="navbar__session" v-if="isUserLoggedIn">
         <svg
           class="navbar__session_icon"
@@ -15,16 +17,21 @@
           />
         </svg>
         <span>{{ username }}</span>
-        <button @click="logout">Logout</button>
+        <CButton variant="dark" @click="logout">Logout</CButton>
       </li>
     </ul>
   </nav>
 </template>
 
 <script>
+import CButton from "@/components/share/CButton.vue";
 import { mapGetters, mapState } from "vuex";
+
 export default {
   name: "Navbar",
+  components: {
+    CButton,
+  },
   computed: {
     ...mapState({
       username: (state) => state.sessionStore.username,

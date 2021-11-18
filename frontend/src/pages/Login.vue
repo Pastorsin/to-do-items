@@ -6,25 +6,29 @@
       <form @submit.prevent="login" class="login__form">
         <div class="login__username">
           <label for="username">Username</label>
-          <input
-            id="username"
-            v-model="username"
-            placeholder="Enter username"
-            required
-          />
+          <CInput>
+            <input
+              id="username"
+              v-model="username"
+              placeholder="Enter username"
+              required
+            />
+          </CInput>
         </div>
         <div class="login__password">
           <label for="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            v-model="password"
-            placeholder="Password"
-            required
-          />
+          <CInput>
+            <input
+              type="password"
+              id="password"
+              v-model="password"
+              placeholder="Password"
+              required
+            />
+          </CInput>
         </div>
         <div class="login__submit">
-          <button type="submit">Login</button>
+          <CButton type="submit" variant="large">Login</CButton>
         </div>
       </form>
     </template>
@@ -32,11 +36,15 @@
 </template>
 
 <script>
+import CButton from "@/components/share/CButton.vue";
+import CInput from "@/components/share/CInput.vue";
 import Layout from "@/components/Layout.vue";
 
 export default {
   name: "Login",
   components: {
+    CButton,
+    CInput,
     Layout,
   },
   data() {
